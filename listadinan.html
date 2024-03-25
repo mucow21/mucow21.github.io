@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista Dinâmica</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #container {
+        width: 300px;
+        margin: 0 auto;
+    }
+    #addBtn {
+        margin-top: 10px;
+    }
+    header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+    h1 {
+        margin: 10px 0;
+    }
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0ecec;
+            color: #333;
+    }
+    section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .section-title {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+    }
+    .botao-voltar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+    }
+
+    .botao-voltar:hover {
+            background-color: #45a049;
+    }
+    .div{
+        margin-left: 10px;
+    }
+    .delete-btn {
+        background-color: #f44336;
+        color: white;
+        padding: 4px 8px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-right: 8px;
+    }
+    .edit-btn {
+        background-color: #ffd700;
+        color: black;
+        padding: 4px 8px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+</style>
+</head>
+<header>
+    <h1>Lista Dinâmica</h1>
+</header>
+<br>
+<div class="div">
+    <a href="index.html"><button class="botao-voltar">Voltar para a página inicial</button></a>
+</div>
+<body>
+
+<section>
+    <h3>Adicione um item na lista:</h3>
+    <input type="text" id="itemInput" placeholder="Digite um item">
+    <button onclick="addItem()" id="addBtn">Adicionar</button>
+</section>
+<section>
+    <h1 class="section-title">Minha Lista:</h1>
+    <ul id="itemList">
+    </ul>
+</section>
+
+<script>
+function addItem() {
+    var input = document.getElementById("itemInput");
+    var item = input.value;
+    var list = document.getElementById("itemList");
+    var listItem = document.createElement("li");
+    var deleteBtn = document.createElement("button");
+    var editBtn = document.createElement("button");
+    
+    deleteBtn.textContent = "X";
+    deleteBtn.className = "delete-btn";
+    deleteBtn.onclick = function() {
+        listItem.remove();
+    };
+    
+    editBtn.textContent = "Editar";
+    editBtn.className = "edit-btn";
+    editBtn.onclick = function() {
+        var newText = prompt("Editar item:", listItem.querySelector(".item-text").textContent);
+        if (newText !== null) {
+            listItem.querySelector(".item-text").textContent = newText;
+        }
+    };
+    
+    var itemText = document.createElement("span");
+    itemText.className = "item-text";
+    itemText.textContent = item;
+    
+    listItem.appendChild(itemText);
+    listItem.appendChild(deleteBtn);
+    listItem.appendChild(editBtn);
+    list.appendChild(listItem);
+    input.value = ""; // Limpa o campo de entrada após adicionar o item
+}
+</script>
+</body>
+</html>
